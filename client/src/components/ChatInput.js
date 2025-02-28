@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
 import './ChatInput.css';
 
-function ChatInput({ onSend }) {
-  const [url, setUrl] = useState('');
-  const [question, setQuestion] = useState('');
+function ChatInput({ onSend, initialMode }) {
+  const [text, setText] = useState('');
 
-  const handleSubmit = (e) => {
+   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!url || !question) return;
-    onSend(url, question);
-    setUrl('');
-    setQuestion('');
-  };
+    if (!text.trim()) return;
+    onSend(text);
+    setText('');
+   };
 
   return (
-    <form className="chat-input" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Enter LeetCode URL"
-        value={url}
-        onChange={(e) => setUrl(e.target.value)}
-        required
-      />
+    <form 
+      className={`chat-input ${initialMode ? 'initial-mode' : ''}`} 
+      onSubmit={handleSubmit}
+    >
       <textarea
-        placeholder="Enter your doubt or question"
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-        required
-      ></textarea>
+        placeholder={initialMode ? 'Ask anything...' : 'Type your message...'}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSubmit(e);
+          }
+        }}
+      />
       <button type="submit">Send</button>
     </form>
   );

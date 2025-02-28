@@ -1,17 +1,27 @@
-.chat-container {
+ .chat-container {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    max-width: 600px;
-    margin: 20px auto;
-    border: 1px solid #ddd;
-    background: #fff;
+    width: 100vw;
+    background-color: #f7f7f7;
+    overflow: hidden;
+   
   }
   
   .chat-history {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
-    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
-  
+  .chat-history::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-history::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
+
+ 
