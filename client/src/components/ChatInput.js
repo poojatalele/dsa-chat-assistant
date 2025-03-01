@@ -17,7 +17,7 @@ function ChatInput({ onSend, initialMode }) {
       onSubmit={handleSubmit}
     >
       <textarea
-        placeholder={initialMode ? 'Ask anything...' : 'Type your message...'}
+        placeholder={'Type your message...'}
         value={text}
         onChange={(e) => setText(e.target.value)}
         
